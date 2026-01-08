@@ -19,4 +19,6 @@ document.body.append(parent);
 
 // Tetris clone from https://github.com/ArcaneCircle/tetris
 const tile = await tl.loadTile(`http:./arcanecircle-tetris.xdc`);
-parent.append(await tile.renderCard());
+parent.append(await tile.renderCard({
+  contentHeight: 600,
+}));
