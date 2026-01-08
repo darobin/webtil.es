@@ -5,6 +5,7 @@ import * as esbuild from 'esbuild';
 const isWatch = argv[2] === '--watch';
 const sources = [
   { from: 'public/demos/experiment/experiment.js', to: 'public/demos/experiment/experiment.min.js' },
+  { from: 'public/demos/xdc/xdc.js', to: 'public/demos/xdc/xdc.min.js' },
   ].map(({ from, to }) => ({
     entryPoints: [from],
     bundle: true,
@@ -18,5 +19,5 @@ if (isWatch) {
   await Promise.all(contexts.map(ctx => ctx.watch()));
 }
 else {
-  sources.map(src => esbuild.build(src))
+  sources.map(src => esbuild.build(src));
 }

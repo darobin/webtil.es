@@ -1,13 +1,6 @@
 
-import { TileMothership, MemoryTileLoader } from '@dasl/tiles/loader';
-
-// XXX
-// x move most of this to tile-loader
-// x load tile-loader
-// x have it resolve content in memory with the same colour thing
-// - move on to move complex things
-// - refactor the tile-loader to be a proper library
-// - refactor it to split, too
+import { TileMothership } from '@dasl/tiles/loader';
+import { MemoryTileLoader } from '@dasl/tiles/loader/memory';
 
 // A more real experiment!
 const mem = new MemoryTileLoader();
