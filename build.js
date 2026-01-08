@@ -6,6 +6,7 @@ const isWatch = argv[2] === '--watch';
 const sources = [
   { from: 'public/demos/experiment/experiment.js', to: 'public/demos/experiment/experiment.min.js' },
   { from: 'public/demos/xdc/xdc.js', to: 'public/demos/xdc/xdc.min.js' },
+  { from: 'public/demos/car/car.js', to: 'public/demos/car/car.min.js' },
   ].map(({ from, to }) => ({
     entryPoints: [from],
     bundle: true,
