@@ -1,5 +1,5 @@
 
-import { TileMothership, MemoryTileLoader } from './tile-loader.js';
+import { TileMothership, MemoryTileLoader } from '@dasl/tiles/loader';
 
 // XXX
 // x move most of this to tile-loader
