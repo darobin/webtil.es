@@ -1,0 +1,47 @@
+{
+  "name": "webtil.es",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "description": "webtil.es",
+  "author": "Robin Berjon <robin@berjon.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "",
+    "watch": "concurrently --handle-input npm:watch-css npm:watch-js npm:watch-server",
+    "watch-server": "npx http-server ./public -p 8017 -g",
+    "watch-js": "./build.js --watch",
+    "build-js": "./build.js",
+    "XXXwatch-css": "NODE_ENV=production cssn --watch public/pinkgill.css public/pinkgill.min.css",
+    "watch-css": ""
+  },
+  "bin": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darobin/webtil.es.git"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "mocha": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "overrides": [],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {}
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "cssn": "^4.1.0",
+    "esbuild": "^0.23.1",
+    "eslint": "^8.26.0",
+    "http-server": "^14.1.1",
+    "nodemon": "^3.1.7"
+  }
+}
