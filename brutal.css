@@ -1,0 +1,98 @@
+@import "shared.css";
+
+header {
+  display: flex;
+  border: var(--brutal-border);
+}
+h1 {
+  font-weight: 400;
+  font-size: var(--header-font-size);
+  margin: 0.5rem;
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 5px;
+}
+nav {
+  text-align: right;
+  flex-grow: 1;
+}
+nav > ul {
+  list-style-type: none;
+  margin: 0.5rem;
+  padding: 0;
+}
+nav > ul > li {
+  font-size: var(--header-font-size);
+  display: inline-block;
+  margin-left: 1rem;
+}
+nav > ul > li > a {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration-thickness: 5px;
+}
+nav > ul > li > a[href="#what"] { text-decoration-color: var(--orange); }
+nav > ul > li > a[href="#what"]:hover { color: var(--orange); }
+nav > ul > li > a[href="#how"] { text-decoration-color: var(--purple); }
+nav > ul > li > a[href="#how"]:hover { color: var(--purple); }
+nav > ul > li > a[href="#code"] { text-decoration-color: var(--blue); }
+nav > ul > li > a[href="#code"]:hover { color: var(--blue); }
+nav > ul > li > a[href="#spec"] { text-decoration-color: var(--red); }
+nav > ul > li > a[href="#spec"]:hover { color: var(--red); }
+nav > ul > li > a[href="https://github.com/darobin/dasl.ing"] { text-decoration-color: var(--yellow); }
+nav > ul > li > a[href="https://github.com/darobin/dasl.ing"]:hover { color: var(--yellow); }
+nav > ul > li > a[href="https://github.com/darobin/dasl.ing/issues"] { text-decoration-color: var(--green); }
+nav > ul > li > a[href="https://github.com/darobin/dasl.ing/issues"]:hover { color: var(--green); }
+h2 {
+  border: var(--brutal-border);
+  font-weight: 400;
+  font-size: var(--header-font-size);
+  padding: 0.5rem;
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-transform: uppercase;
+}
+h3 {
+  margin: 1rem;
+  font-weight: 400;
+  font-size: var(--header-font-size);
+}
+p, section > ul, section > ol, section > dl {
+  margin: 0 1rem 1rem 1rem;
+  max-width: 70ch;
+  line-height: 1.4;
+  font-size: 1.2rem;
+}
+section > ul, section > ol {
+  padding-left: 1rem;
+  max-width: calc(70ch - 1rem);
+}
+section ul > li {
+  list-style-type: square;
+}
+#what > h2 { text-decoration-color: var(--orange); }
+#how > h2 { text-decoration-color: var(--purple); }
+#code > h2 { text-decoration-color: var(--blue); }
+#spec > h2 { text-decoration-color: var(--red); }
+footer {
+  display: flex;
+  border: var(--brutal-border);
+  align-items: center;
+}
+footer p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width:800px) {
+  header {
+    display: block;
+  }
+  nav {
+    text-align: left;
+  }
+  nav > ul > li {
+    display: block;
+  }
+}
