@@ -16,6 +16,8 @@ parent.style.padding = '50px';
 parent.style.width = '570px';
 document.body.append(parent);
 
-const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mceykgxbkk2r`);
+// const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mceykgxbkk2r`); // Rick
+const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mcjwwoqjqs2v`); // Minesweeper
+// const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mchoygjzss2z`); // Minesweeper Fake
 console.warn(`Tile`, tile);
 parent.append(await tile.renderCard());
