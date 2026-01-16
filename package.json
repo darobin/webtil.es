@@ -7,12 +7,12 @@
   "author": "Robin Berjon <robin@berjon.com>",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "",
-    "watch": "concurrently --handle-input npm:watch-css npm:watch-js npm:watch-server",
-    "watch-server": "npx http-server ./public -p 8017 -g",
+    "start": "node index.js",
+    "watch": "concurrently --handle-input npm:watch-js npm:watch-server",
+    "watch-server": "node --watch index.js",
+    "XXXwatch-server": "npx http-server ./public -p 8017 -g",
     "watch-js": "./build.js --watch",
-    "build-js": "./build.js",
-    "XXXwatch-css": "NODE_ENV=production cssn --watch public/pinkgill.css public/pinkgill.min.css",
+    "build": "./build.js",
     "watch-css": ""
   },
   "bin": {},
@@ -34,9 +34,6 @@
     },
     "rules": {}
   },
-  "dependencies": {
-    "@dasl/tiles": "^0.1.0"
-  },
   "devDependencies": {
     "concurrently": "^9.0.0",
     "cssn": "^4.1.0",
@@ -44,5 +41,8 @@
     "eslint": "^8.26.0",
     "http-server": "^14.1.1",
     "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "@dasl/tiles": "^1.0.0"
   }
 }
