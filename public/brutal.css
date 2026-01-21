@@ -1,16 +1,128 @@
-@import "shared.css";
+
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-ThinItalic.ttf");
+  font-weight: 100;
+  font-style: italic;
+}
+
+:root {
+  --yellow: #fff500;
+  --new-blue: #00b7ba;
+  --deep-green: #008487;
+  --new-purple: #7b65ea;
+  --light-pink: #ff959d;
+  --deep-red: #bf0033;
+
+  --green: #00ff75;
+  --purple: #cd76ea;
+  --orange: #ffb443;
+  --red: #ff5e5e;
+  --blue: #39dbff;
+  --contrasted: #00819e;
+  --text-width: 80rem;
+  --block-width: 960px;
+  --header-font-size: 1.6rem;
+  --brutal-border: 5px solid #000;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Barlow;
+  background-image:
+    radial-gradient(18% 28% at 24% 50%, #cefaffff 7%, #00000000 100%),
+    radial-gradient(18% 28% at 18% 71%, #ffffff59 6%, #00000000 100%),
+    radial-gradient(70% 53% at 36% 76%, var(--orange) 0%, #00000000 100%),
+    radial-gradient(42% 53% at 15% 94%, #fff 7%, #00000000 100%),
+    radial-gradient(42% 53% at 34% 72%, #fff 7%, #00000000 100%),
+    radial-gradient(18% 28% at 35% 87%, #fff 7%, #00000000 100%),
+    radial-gradient(31% 43% at 7% 98%, #fff 24%, #00000000 100%),
+    radial-gradient(21% 37% at 72% 23%, var(--yellow) 24%, #00000000 100%),
+    radial-gradient(35% 56% at 91% 74%, var(--red) 9%, #00000000 100%),
+    radial-gradient(74% 86% at 67% 38%, var(--green) 24%, #00000000 100%),
+    linear-gradient(125deg, #cd76ea 1%, var(--new-purple) 100%)
+  ;
+}
+main {
+  max-width: var(--block-width);
+  margin: auto;
+  min-height: 100vh;
+  padding: 2rem 1rem 1rem 1rem;
+}
+dd {
+  margin-bottom: 1rem;
+}
+a {
+  color: var(--contrasted);
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--blue);
+}
+a:hover {
+  text-decoration-color: var(--red);
+}
+dfn {
+  font-style: normal;
+  font-weight: 700;
+}
+var {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: #ccc;
+}
+code, pre {
+  font-size: 1rem;
+}
 
 header {
   display: flex;
   border: var(--brutal-border);
+  /*background-color: oklch(from var(--green) l 0.4 h);*/
+  /*background-color: var(--yellow);*/
+  background: linear-gradient(var(--yellow), #fff);
 }
 h1 {
-  font-weight: 400;
-  font-size: var(--header-font-size);
-  margin: 0.5rem;
-  text-decoration: underline;
-  text-decoration-color: var(--green);
-  text-decoration-thickness: 5px;
+  font-weight: 300;
+  font-size: 5rem;
+  margin: 10rem 0.5rem 0.5rem 1rem;
+  /*text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 5px;*/
 }
 nav {
   text-align: right;
@@ -30,25 +142,15 @@ nav > ul > li > a {
   color: #000;
   font-weight: 700;
   text-transform: uppercase;
-  text-decoration-thickness: 5px;
+  text-decoration: none;
+  /*text-decoration-thickness: 5px;*/
 }
-nav > ul > li > a[href="#what"] { text-decoration-color: var(--orange); }
-nav > ul > li > a[href="#what"]:hover { color: var(--orange); }
-nav > ul > li > a[href="#how"] { text-decoration-color: var(--purple); }
-nav > ul > li > a[href="#how"]:hover { color: var(--purple); }
-nav > ul > li > a[href="#code"] { text-decoration-color: var(--blue); }
-nav > ul > li > a[href="#code"]:hover { color: var(--blue); }
-nav > ul > li > a[href="#spec"] { text-decoration-color: var(--red); }
-nav > ul > li > a[href="#spec"]:hover { color: var(--red); }
-nav > ul > li > a[href="https://github.com/darobin/dasl.ing"] { text-decoration-color: var(--yellow); }
-nav > ul > li > a[href="https://github.com/darobin/dasl.ing"]:hover { color: var(--yellow); }
-nav > ul > li > a[href="https://github.com/darobin/dasl.ing/issues"] { text-decoration-color: var(--green); }
-nav > ul > li > a[href="https://github.com/darobin/dasl.ing/issues"]:hover { color: var(--green); }
 h2 {
-  border: var(--brutal-border);
+  border-bottom: var(--brutal-border);
   font-weight: 400;
   font-size: var(--header-font-size);
   padding: 0.5rem;
+  margin: 0 0 1rem 0;
   text-decoration: underline;
   text-decoration-thickness: 5px;
   text-transform: uppercase;
@@ -57,6 +159,11 @@ h3 {
   margin: 1rem;
   font-weight: 400;
   font-size: var(--header-font-size);
+}
+section {
+  background-color: #fff;
+  border: var(--brutal-border);
+  margin: 2rem 0;
 }
 p, section > ul, section > ol, section > dl {
   margin: 0 1rem 1rem 1rem;
@@ -79,6 +186,7 @@ footer {
   display: flex;
   border: var(--brutal-border);
   align-items: center;
+  background: #fff;
 }
 footer p {
   margin-top: 0;

@@ -3,205 +3,65 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%220%22 y=%220%22 width=%22100%22 height=%22100%22 fill=%22%2300ff75%22></rect></svg>">
-    <title>DASL — Data-Addressed Structures & Links</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%220%22 y=%220%22 width=%22100%22 height=%22100%22 fill=%22%23ff5e5e%22></rect></svg>">
+    <title>Web Tiles</title>
     <link rel="stylesheet" href="brutal.css">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" property="og:title" content="DASL — Data-Addressed Structures &amp; Links">
-    <meta name="twitter:description" property="og:description" content="A small set of simple, standard primitives to work on content-addressed data.">
-    <meta name="twitter:image" property="og:image" content="https://dasl.ing/banner.png">
-    <meta name="twitter:image:alt" content="Very colourful stripes, so colourful it hurts">
-    <meta name="twitter:url" property="og:url" content="https://dasl.ing/">
-    <meta property="og:site_name" content="DASL">
+    <meta name="twitter:title" property="og:title" content="Web Tiles">
+    <!--<meta name="twitter:description" property="og:description" content="A small set of simple, standard primitives to work on content-addressed data.">-->
+    <!--<meta name="twitter:image" property="og:image" content="https://dasl.ing/banner.png">-->
+    <!--<meta name="twitter:image:alt" content="Very colourful stripes, so colourful it hurts">-->
+    <meta name="twitter:url" property="og:url" content="https://webtil.es/">
+    <meta property="og:site_name" content="Web Tiles">
     <meta property="og:locale" content="en">
     <meta name="theme-color" content="#00ff75">
   </head>
   <body>
     <main>
       <header>
-        <h1>DASL — Data-Addressed Structures &amp; Links</h1>
+        <h1>Web Tiles</h1>
         <nav>
           <ul>
-            <li><a href="#what">What</a></li>
-            <li><a href="#how">How</a></li>
-            <li><a href="#code">Code</a></li>
-            <li><a href="#spec">Specs</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/demos/">Demos</a></li>
+            <li><a href="https://dasl.ing/tiles.html">Spec</a></li>
           </ul>
         </nav>
       </header>
       <section id="what">
         <h2>What is this?</h2>
         <p>
-          DASL ("dazzle") is a small set of simple, standard primitives for working with content-addressed,
-          linked data. It builds on content addressing, a proven approach used in Git and
-          <a href="https://docs.ipfs.tech/concepts/what-is-ipfs/">IPFS</a> to
-          create reliable content identifiers (known as CIDs) through cryptographic hashing. Content addressing
-          enables robust data integrity checks and efficient networking: systems can verify they received exactly
-          what they asked for and avoid downloading the same content twice. The linked data part lets you link to
-          stuff by its hash. You can build very big graphs with these primitives, such as the graph behind Bluesky.
+          Tiles are composable web docs and apps that can safely be used in arbitrary
+          contexts and assembled from multiple sources to carry out complex user
+          interface tasks. Their composability, security, and privacy properties
+          make them ideal for use in social media, chat, agents, and malleable
+          software.
         </p>
         <p>
-          We call DASL "data-addressed" because it supports a data serialization component that makes
-          <a href="https://proto.school/content-addressing">content-addressing</a> sweet and easy when
-          working with data. The design is inspired by subcomponents of the
-          <a href="https://docs.ipfs.tech/concepts/content-addressing/">IPFS</a> universe, but simplified to improve
-          interoperability, decrease costs, and work well with the web. More specifically, our priorities are:
-        </p>
-        <ul>
-          <li>
-            <strong>pave the cowpaths</strong>: we focus on supporting what people trying to solve real-world
-            problems actually use. This takes over any consideration of engineering ideals or theoretical purity.
-            We're retconning the spec to what people actually use implement — as it should be.
-          </li>
-          <li>
-            <strong>extensibility vs optionality</strong>: extensibility is important for long-lived distributed
-            systems, because the world will happen and you will need to change. But introducing optionality
-            reduces interoperability and increases cost of both implementation and adoption. So rather than
-            require support for many options now, we have extension points now but deliberately don't use their
-            full range.
-          </li>
-          <li>
-            <strong>don't make me think</strong>: you don't want to be thinking about content addressing. You
-            want to grab this off the shelf and have something that works out of the box. Nothing weird, no
-            impedance mismatch with the systems you know and love (or maybe know and hate, but whatever, it
-            just works).
-          </li>
-          <li>
-            <strong>lightweight loading</strong>: some people like JavaScript, others don't. We don't care, we
-            just want things that work. What's certain is that you can't ignore it and be relevant. The ability
-            to ship small code to the browser is critical.
-          </li>
-          <li>
-            <strong>Unix philosophy</strong>: all of our specs are tiny and meant to compose together in simple
-            ways that can be implemented independently from one another.
-          </li>
-        </ul>
-        <p>
-          This is intended to work for the community, to grow support for what we need. If you have thoughts, don't
-          be shy and <a href="https://github.com/darobin/dasl.ing/issues">submit an issue</a>! No stupid questions,
-          don't assume everyone else has context that you don't. If this page isn't enough to understand DASL,
-          then we're the ones who screwed up.
+          Building on the <a href="https://dasl.ing/">DASL</a> specification toolbox
+          brings the power of content addressing to tiles, and makes them excellent
+          for use in contexts such as the AT Protocol.
         </p>
       </section>
       <section id="how">
-        <h2>How</h2>
+        <h2>Decision Tree</h2>
         <p>
-          This section describes how to use DASL patterns. It's work in progress!
+          tk decision tree here
         </p>
       </section>
-      <section id="code">
+      <!--<section id="code">
         <h2>Implementations</h2>
-        <p>
-          DASL is a strict subset of IPFS CIDs and IPLD, so existing IPFS and IPLD implementations will just
-          read DASL CIDs and the MASL documents they point to without so much as a hiccup. Some implementations also specifically target a DASL subset.
-        </p>
-        <p>Here are some implementations that partially or fully support DASL:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/mary-ext/atcute/">atcute</a> (JS/TS): a collection of lightweight
-            packages to make working with Bluesky and the ATmosphere easy.
-          </li>
-          <li>
-            <a href="https://github.com/DavidBuchanan314/dag-cbrrr">dag-cbrrr</a> (Python): fast DAG-CBOR
-            implementation.
-          </li>
-          <li>
-            <a href="https://github.com/MarshalX/python-libipld">python-libipld</a> (Python): a Python
-            wrapper around Rust, focused on the ATmosphere.
-          </li>
-          <li>
-            <a href="https://github.com/ipld/rust-ipld-core">ipld-core</a> (Rust): fast Rust implementation.
-          </li>
-          <li>
-            <a href="https://www.npmjs.com/package/@dasl/rasl">@dasl/rasl</a> (TS/JS): an implementation of RASL
-            that's a drop-in handler for ExpressJS.
-          </li>
-          <li>
-            <a href="https://salsa.debian.org/debian/rust_cid_npm">rust_cid_npm</a> (Rust): Fast and tiny rust
-            library, CLI tool, and npm package to generate CIDs.
-          </li>
-          <li>
-            <a href="https://github.com/ipfs/go-cid">go-cid</a> (Go): implements the CID spec
-          </li>
-          <li>
-            <a href="https://github.com/ipfs/kubo/">Kubo</a>/<a href="https://github.com/ipfs/boxo/">Boxo</a> (Go):
-            the Swiss-Army chainsaw of all things IPFS.
-          </li>
-          <li>
-            <a href="https://helia.io/">Helia</a> (JS/TS): a browser- and CDN-friendly, modular, "import only what you need" JS implementation of IPFS.
-          </li>
-        </ul>
-        <p>As of June 2025, a DASL test suite is in development. View the <a href="https://hyphacoop.github.io/dasl-testing/">compliance matrix</a> or the <a href="https://github.com/hyphacoop/dasl-testing">source code</a>.</p>
-      </section>
-      <section id="spec">
+      </section>-->
+      <!--<section id="spec">
         <h2>Specifications</h2>
-        <dl>
-          <dt>
-            <a href="cid.html">Content Identifiers (CIDs)</a>
-          </dt>
-          <dd>
-            CIDs (Content IDs) are identifiers used for addressing resources by their contents, essentially a hash
-            with limited metadata.
-          </dd>
-          <dt>
-            <a href="drisl.html">Deterministic Representation for Interoperable Structures and Links (DRISL)</a>
-          </dt>
-          <dd>
-            DRISL is a profile of deterministic CBOR used to ensure that the same data will have the same CID;
-            it features native support for using binary CIDs as compact links between documents.
-          </dd>
-          <dt>
-            <a href="car.html">Content-Addressable aRchives (CAR)</a>
-          </dt>
-          <dd>
-            The CAR format offers a serialized representation of set of content-addressed
-            resources in one single concatenated stream, alongside a header that describes
-            that content.
-          </dd>
-          <dt>
-            <a href="masl.html">MASL — Metadata for Arbitrary Structures &amp; Links</a>
-          </dt>
-          <dd>
-            MASL is a type of CBOR metadata document that is designed to work well with content-addressed
-            and decentralised systems, to enable fully self-contained, self-certified content
-            distribution.
-          </dd>
-          <dt>
-            <a href="rasl.html">RASL — Retrieval of Arbitrary Structures &amp; Links</a>
-          </dt>
-          <dd>
-            RASL is a URL scheme used to identify content-addressed DASL resources
-            along with a simple HTTP-based retrieval method.
-          </dd>
-          <dt>
-            <a href="bdasl.html">Big DASL (BDASL)</a>
-          </dt>
-          <dd>
-            This extends DASL CIDs with a new hash type that works better for large files but isn't
-            available by default in browsers, and therefore not an appropriate option in most
-            situations.
-          </dd>
-          <dt>
-            <a href="ipfs.html">IPFS Interoperability Considerations</a>
-          </dt>
-          <dd>
-            DASL components are designed to be small and to the extent possible self-contained.
-            Because of that, despite having roots in IPFS, no DASL component depends on
-            traditional IPFS implementations. In many cases, systems produced to work with
-            DASL will interoperate with IPFS, but DASL's independence means that there can
-            occasionally be impedance mismatch. This document is a non-normative list of
-            things to consider when using DASL with IPFS systems, particularly with ones based
-            on the DHT and Bitswap.
-          </dd>
-        </dl>
-      </section>
+      </section>-->
       <footer>
         <p>
           Made with 👾 by the IPFS Foundation.
         </p>
         <nav>
           <ul>
-            <li><a href="https://github.com/darobin/dasl.ing">Source</a></li>
+            <!--<li><a href="https://github.com/darobin/dasl.ing">Source</a></li>-->
             <li><a href="https://github.com/darobin/dasl.ing/issues">Issues</a></li>
           </ul>
         </nav>
