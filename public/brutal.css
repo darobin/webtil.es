@@ -60,6 +60,7 @@
   --block-width: 960px;
   --header-font-size: 1.6rem;
   --brutal-border: 5px solid #000;
+  /*--brutal-border: 5px solid oklch(from var(--theme) l c calc(h + 180));*/
 }
 html, body {
   margin: 0;
@@ -103,8 +104,9 @@ code, pre {
 
 header {
   display: flex;
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.8), -2px -2px 10px rgba(0, 0, 0, 0.4);
+  border: var(--brutal-border);
+  /*border: 2px solid rgba(255, 255, 255, 0.35);*/
+  /*box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.8), -2px -2px 10px rgba(0, 0, 0, 0.4);*/
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
 }
@@ -137,6 +139,11 @@ nav > ul > li > a {
   text-transform: uppercase;
   text-decoration: none;
   /*text-decoration-thickness: 5px;*/
+}
+nav > ul > li > a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 5px;
+  text-decoration-color: var(--theme, var(--deep-red));
 }
 h2 {
   border-bottom: var(--brutal-border);
