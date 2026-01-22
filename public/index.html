@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%220%22 y=%220%22 width=%22100%22 height=%22100%22 fill=%22%23ff5e5e%22></rect></svg>">
     <title>Web Tiles</title>
-    <link rel="stylesheet" href="brutal.css">
+    <link rel="stylesheet" href="/brutal.css">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" property="og:title" content="Web Tiles">
     <!--<meta name="twitter:description" property="og:description" content="A small set of simple, standard primitives to work on content-addressed data.">-->
@@ -15,39 +15,6 @@
     <meta property="og:site_name" content="Web Tiles">
     <meta property="og:locale" content="en">
     <meta name="theme-color" content="#00ff75">
-    <script>
-      const burn = {
-        '--yellow': 'normal',
-        '--green': 'normal',
-        '--contrasted': 'darken',
-        '--deep-green': 'darken',
-        '--new-blue': 'darken',
-        '--red': 'hard-light',
-      };
-      const colours = {
-        '--yellow': 'fff500',
-        '--new-blue': '00b7ba',
-        '--deep-green': '008487',
-        '--new-purple': '7b65ea',
-        '--light-pink': 'ff959d',
-        '--deep-red': 'bf0033',
-        '--green': '00ff75',
-        '--purple': 'cd76ea',
-        '--orange': 'ffb443',
-        '--red': 'ff5e5e',
-        '--blue': '39dbff',
-        '--contrasted': '00819e',
-      };
-      const vars = Object.keys(colours);
-      const name = vars[Math.floor(Math.random() * vars.length)];
-      const hex = colours[name];
-      document.documentElement.setAttribute('style', `--theme: var(${name}); --blend: ${burn[name] || 'color-burn'}`);
-      document.head.querySelector('link[rel="icon"]')?.setAttribute(
-        'href',
-        `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%220%22 y=%220%22 width=%22100%22 height=%22100%22 fill=%22%23${hex}%22></rect></svg>`
-      );
-      document.head.querySelector('meta[name="theme-color"]')?.setAttribute('content', `#${hex}`);
-    </script>
   </head>
   <body>
     <main>
@@ -192,5 +159,6 @@
         </nav>
       </footer>
     </main>
+    <script src="/colourful.js" defer></script>
   </body>
 </html>
