@@ -64,20 +64,12 @@
 html, body {
   margin: 0;
   padding: 0;
+}
+body {
   font-family: Barlow;
-  background-image:
-    radial-gradient(18% 28% at 24% 50%, #cefaffff 7%, #00000000 100%),
-    radial-gradient(18% 28% at 18% 71%, #ffffff59 6%, #00000000 100%),
-    radial-gradient(70% 53% at 36% 76%, var(--orange) 0%, #00000000 100%),
-    radial-gradient(42% 53% at 15% 94%, #fff 7%, #00000000 100%),
-    radial-gradient(42% 53% at 34% 72%, #fff 7%, #00000000 100%),
-    radial-gradient(18% 28% at 35% 87%, #fff 7%, #00000000 100%),
-    radial-gradient(31% 43% at 7% 98%, #fff 24%, #00000000 100%),
-    radial-gradient(21% 37% at 72% 23%, var(--yellow) 24%, #00000000 100%),
-    radial-gradient(35% 56% at 91% 74%, var(--red) 9%, #00000000 100%),
-    radial-gradient(74% 86% at 67% 38%, var(--green) 24%, #00000000 100%),
-    linear-gradient(125deg, #cd76ea 1%, var(--new-purple) 100%)
-  ;
+  background: var(--theme, var(--deep-red));
+  background-image: url("tile.png");
+  background-blend-mode: var(--blend);
 }
 main {
   max-width: var(--block-width);
@@ -111,10 +103,10 @@ code, pre {
 
 header {
   display: flex;
-  border: var(--brutal-border);
-  /*background-color: oklch(from var(--green) l 0.4 h);*/
-  /*background-color: var(--yellow);*/
-  background: linear-gradient(var(--yellow), #fff);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.8), -2px -2px 10px rgba(0, 0, 0, 0.4);
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
 }
 h1 {
   font-weight: 300;
@@ -127,6 +119,7 @@ h1 {
 nav {
   text-align: right;
   flex-grow: 1;
+  margin-right: 1rem;
 }
 nav > ul {
   list-style-type: none;
