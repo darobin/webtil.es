@@ -179,9 +179,9 @@ dd {
 
 
 #what > h2 { text-decoration-color: var(--orange); }
-#how > h2 { text-decoration-color: var(--purple); }
+#decisions > h2 { text-decoration-color: var(--purple); }
 #code > h2 { text-decoration-color: var(--blue); }
-#spec > h2 { text-decoration-color: var(--red); }
+#demos > h2 { text-decoration-color: var(--red); }
 footer {
   display: flex;
   border: var(--brutal-border);

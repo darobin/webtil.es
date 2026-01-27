@@ -3,9 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>[Demo] AT Playground</title>
+  <title>AT Tiles Browser</title>
   <link rel="icon" href="data:,">
   <script src="at.min.js" type="module"></script>
 </head>
-<body></body>
+<body>
+  <main>
+    <form>
+      <input type="text" name="url">
+      <input type="submit" value="Go">
+    </form>
+    <div id="render-zone"></div>
+    <div id="examples">
+      <h3>Examples</h3>
+      <ul>
+        <li>
+          <a href="#url=at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mceykgxbkk2r">Classic</a>
+        </li>
+        <li>
+          <a href="#url=at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mcjwwoqjqs2v">Minesweeper</a>
+        </li>
+      </ul>
+    </div>
+  </main>
+</body>
 </html>
