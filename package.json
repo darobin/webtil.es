@@ -43,6 +43,7 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
-    "@dasl/tiles": "^1.0.0"
+    "@dasl/tiles": "^1.0.0",
+    "nanostores": "^1.1.0"
   }
 }
