@@ -67,14 +67,16 @@ window.addEventListener('load', () => {
   });
   const rz = document.querySelector('#render-zone');
   // XXX THIS DOESN'T WORK
-  effect([$error, $currentTile], async (err, tile) => {
+  effect([$error, $currentTile], (err, tile) => {
     console.warn(`rndr`, err, tile);
     rz.textContent = null;
     if (err) el('div', { class: 'error' }, [err], rz);
     else if (tile) {
       // XXX
       // This is supposed to have a lot more, like the person and all
-      el('div', { class: 'tile-container' }, [await tile.renderCard()], rz);
+      tile.renderCard().then(card => { // async does weird thing with nanostores
+        el('div', { class: 'tile-container' }, [card], rz);
+      });
     }
     else el('div', { class: 'nothing' }, ['ATMOS ready to sail the skies.'], rz);
     return () => {};
