@@ -1,0 +1,24 @@
+
+@import url("shared.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Barlow;
+}
+main {
+  max-width: var(--block-width);
+  margin: auto;
+  min-height: 100vh;
+  padding: 2rem 1rem 1rem 1rem;
+}
+a {
+  color: var(--contrasted);
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--blue);
+}
+a:hover {
+  text-decoration-color: var(--red);
+}

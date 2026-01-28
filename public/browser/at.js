@@ -38,7 +38,7 @@ function error (msg) {
 
 window.addEventListener('hashchange', navigateFromHash);
 window.addEventListener('load', () => {
-  const form = document.querySelector('main > form');
+  const form = document.querySelector('#browser > form');
   const urlBar = form.querySelector('input[name="url"]')
   form.addEventListener('submit', (ev) => {
     ev.preventDefault();

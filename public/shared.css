@@ -1,0 +1,64 @@
+
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Italic.ttf");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-BoldItalic.ttf");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("fonts/Barlow-ThinItalic.ttf");
+  font-weight: 100;
+  font-style: italic;
+}
+
+:root {
+  --yellow: #fff500;
+  --new-blue: #00b7ba;
+  --deep-green: #008487;
+  --new-purple: #7b65ea;
+  --light-pink: #ff959d;
+  --deep-red: #bf0033;
+
+  --green: #00ff75;
+  --purple: #cd76ea;
+  --orange: #ffb443;
+  --red: #ff5e5e;
+  --blue: #39dbff;
+  --contrasted: #00819e;
+  --text-width: 80rem;
+  --block-width: 960px;
+  --header-font-size: 1.6rem;
+  --brutal-border: 5px solid #000;
+  /*--brutal-border: 5px solid oklch(from var(--theme) l c calc(h + 180));*/
+}
