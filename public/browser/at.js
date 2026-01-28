@@ -1,7 +1,7 @@
 
 import { TileMothership } from '@dasl/tiles/loader';
 import { ATTileLoader } from '@dasl/tiles/loader/at';
-import { atom } from 'nanostores';
+import { atom, effect } from 'nanostores';
 
 // AT Tiles!
 const loadDomain = (/localhost|\.bast/.test(window.location.hostname)) ? 'load.webtiles.bast' : 'load.webtil.es';
@@ -12,10 +12,14 @@ tl.addLoader(at);
 
 // Stores
 const $url = atom();
-function navigate (url) {
+const $currentTile = atom();
+async function navigate (url) {
   if (!url) return;
   $error.set(null);
   $url.set(url);
+  const tile = await tl.loadTile(url);
+  console.warn(`Tile`, tile);
+  $currentTile.set(tile);
 }
 function navigateFromHash () {
   const { hash } = window.location;
@@ -35,6 +39,11 @@ const $error = atom();
 function error (msg) {
   $error.set(msg);
 }
+const defaultTitle = 'ATMOS';
+const $title = atom(defaultTitle);
+function setTitle (title) {
+  $title.set(title || defaultTitle);
+}
 
 window.addEventListener('hashchange', navigateFromHash);
 window.addEventListener('load', () => {
@@ -50,6 +59,27 @@ window.addEventListener('load', () => {
     window.location.hash = `#url=${url}`;
   });
   $url.subscribe(val => urlBar.value = val || '');
+  $title.subscribe(val => document.querySelector('#browser > h2').textContent = val);
+  const titleChangeHandler = (ev) => setTitle(ev.title);
+  $currentTile.subscribe((tile, oldTile) => {
+    if (tile) tile.addEventListener('title-change', titleChangeHandler);
+    if (oldTile) tile.removeEventListener('title-change', titleChangeHandler);
+  });
+  const rz = document.querySelector('#render-zone');
+  // XXX THIS DOESN'T WORK
+  effect([$error, $currentTile], async (err, tile) => {
+    console.warn(`rndr`, err, tile);
+    rz.textContent = null;
+    if (err) el('div', { class: 'error' }, [err], rz);
+    else if (tile) {
+      // XXX
+      // This is supposed to have a lot more, like the person and all
+      el('div', { class: 'tile-container' }, [await tile.renderCard()], rz);
+    }
+    else el('div', { class: 'nothing' }, ['ATMOS ready to sail the skies.'], rz);
+    return () => {};
+  });
+  navigateFromHash();
 });
 
 // XXX
@@ -67,16 +97,34 @@ window.addEventListener('load', () => {
 //  - examples:
 //    - of the bad blocked stuff
 //    - with screenshots!
+//  - write spec (AT and CAR)
+//  - announce and link to implementation + browser
+//  - update @dasl/tiles with latest changes
 
+export function el (n, attrs, kids, p) {
+  const e = document.createElement(n);
+  Object.entries(attrs || {}).forEach(([k, v]) => {
+    if (v == null) return;
+    if (k === 'style') {
+      Object.entries(v).forEach(([prop, value]) => {
+        const snake = prop
+          .split('-')
+          .map((part, idx) => idx ? part.charAt(0).toUpperCase() + part.slice(1) : part)
+          .join('');
+        e.style[snake] = value;
+      });
+      return;
+    }
+    e.setAttribute(k, v);
+  });
+  (kids || []).forEach((n) => {
+    if (typeof n === 'string') e.append(txt(n));
+    else e.append(n);
+  });
+  if (p) p.append(e);
+  return e;
+}
 
-const parent = document.createElement('div');
-parent.style.display = 'inline-block';
-parent.style.verticalAlign = 'top';
-parent.style.padding = '50px';
-parent.style.width = '570px';
-document.body.append(parent);
-
-// const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mceykgxbkk2r`); // Rick
-const tile = await tl.loadTile(`at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3mcjwwoqjqs2v`); // Minesweeper
-console.warn(`Tile`, tile);
-parent.append(await tile.renderCard());
+function txt (str) {
+  return document.createTextNode(str);
+}
