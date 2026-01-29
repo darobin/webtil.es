@@ -8,6 +8,7 @@ const app = express();
 app.set('trust proxy', 'loopback'); // need this
 app.use((req, res, next) => {
   console.warn(`Hostname: ${req.hostname}`);
+  res.header('X-Robin', req.hostname);
   next();
 });
 app.use(createTileLoadingRouter('webtil.es'));
