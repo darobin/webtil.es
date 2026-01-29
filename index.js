@@ -6,8 +6,8 @@ const rel = makeRel(import.meta.url);
 
 const app = express();
 app.set('trust proxy', 'loopback'); // need this
-app.use(express.static(rel('./public')));
 app.use(createTileLoadingRouter('webtil.es'));
+app.use(express.static(rel('./public')));
 
 app.listen(1503);
 
