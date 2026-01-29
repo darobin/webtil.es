@@ -87,6 +87,7 @@ window.addEventListener('load', () => {
 // XXX
 //  x respond to hash on load and change
 //  x input causes hash to change
+//  - loading indicator
 //  - load not just the tile, but also details about the user (Tile API?)
 //  - render in a way that shows name, avatar, etc. so it's nice, like a post
 //    - also show tile title and icon when content is rendered
