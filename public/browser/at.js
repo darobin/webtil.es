@@ -1,6 +1,7 @@
 
 import { navigateFromHash } from './stores.js';
 import './el/browser.js';
+import './el/tile-card.js';
 
 // XXX
 //  x respond to hash on load and change
