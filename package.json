@@ -44,12 +44,14 @@
   },
   "dependencies": {
     "@dasl/tiles": "^1.0.0",
+    "@nanostores/lit": "^0.2.3",
     "acme-dns-01-gandi": "github:darobin/acme-dns-01-gandi",
     "commander": "^14.0.2",
     "execa": "^9.6.1",
     "greenlock": "^2.8.9",
     "greenlock-store-fs": "^3.2.2",
     "keytar": "^7.9.0",
+    "lit": "^3.3.2",
     "nanostores": "^1.1.0"
   }
 }

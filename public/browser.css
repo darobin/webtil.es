@@ -1,6 +1,15 @@
 
 @import url("shared.css");
 
+:root {
+  --atmos-mid-fill: #666;
+  --atmos-invert-bg: #000;
+  --atmos-invert-fg: #fff;
+  --atmos-shaded: #eee;
+  --atmos-space-mid: 0.4rem;
+  --atmos-space-small: calc(var(--atmos-space-mid) * 0.5);
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -23,52 +32,6 @@ a:hover {
   text-decoration-color: var(--red);
 }
 
-#browser {
+atmos-browser {
   margin-top: 1rem;
-  border: 1px solid #666;
-}
-#browser > h2 {
-  background-color: #000;
-  text-align: center;
-  color: #fff;
-  font-weight: 100;
-  margin: 0;
-  padding: 0.2rem;
-}
-#browser form {
-  background: #eee;
-  border-bottom: 1px solid #666;
-  padding: 0.4rem;
-  display: flex;
-  gap: 0.4rem;
-}
-#browser form input[name="url"] {
-  flex-grow: 1;
-  font-family: inherit;
-  font-size: inherit;
-  padding: 0.4rem;
-  border-radius: 4px;
-  border: 1px solid #000;
-}
-#browser form input[name="url"]:focus {
-  outline: 2px solid var(--green);
-}
-#browser form input[type="submit"] {
-  font-family: inherit;
-  font-size: inherit;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  border: 1px solid #000;
-  background: var(--new-purple);
-  color: #fff;
-  cursor: pointer;
-  transition: 100ms color background;
-}
-#browser form input[type="submit"]:hover {
-  background: var(--light-pink);
-  color: #000;
-}
-#browser form input[type="submit"]:active {
-  background: var(--red);
-  color: #fff;
 }
