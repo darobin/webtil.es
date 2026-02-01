@@ -3,6 +3,8 @@ import { navigateFromHash } from './stores.js';
 import './el/browser.js';
 import './el/profile-card.js';
 import './el/tile-card.js';
+import './el/bg-pic.js';
+import './el/dyn-img.js';
 
 // XXX
 //  x respond to hash on load and change
