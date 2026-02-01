@@ -9,6 +9,7 @@ customElements.define('atmos-tile-card', class AtmosTileCard extends LitElement 
     css`
       :host {
         display: block;
+        max-width: 566px;
       }
       #card {
         border: 1px solid lightgrey;
@@ -22,9 +23,13 @@ customElements.define('atmos-tile-card', class AtmosTileCard extends LitElement 
         padding: 0.5rem 1rem;
         display: flex;
         align-items: center;
+        gap: 12px;
+      }
+      .title atmos-dyn-img::part(image) {
+        border-radius: 50%;
       }
       p {
-        margin: 0.5rem 1rem 1rem 1rem;
+        margin: 0rem 1rem 1rem 1rem;
       }
     `
   ];

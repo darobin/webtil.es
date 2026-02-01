@@ -10,10 +10,10 @@ import './el/dyn-img.js';
 //  x respond to hash on load and change
 //  x input causes hash to change
 //  x need to resolve handles
-//  - get profile data
+//  x get profile data
 //  - loading indicator
-//  - load not just the tile, but also details about the user (Tile API?)
-//  - render in a way that shows name, avatar, etc. so it's nice, like a post
+//  x load not just the tile, but also details about the user (Tile API?)
+//  x render in a way that shows name, avatar, etc. so it's nice, like a post
 //    - also show tile title and icon when content is rendered
 //  - handle errors (not found or loading the wrong kind of data) gracefully
 //  x loadDomain should depend on whether we're loaded locally or not

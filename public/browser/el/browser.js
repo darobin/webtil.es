@@ -43,6 +43,9 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
       form input[name="url"]:focus {
         outline: 2px solid var(--green);
       }
+      atmos-tile-card {
+        margin: 0 auto;
+      }
     `
   ];
   handleSubmit (ev) {

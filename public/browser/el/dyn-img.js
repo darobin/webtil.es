@@ -30,7 +30,7 @@ customElements.define('atmos-dyn-img', class AtmosDynamicImage extends LitElemen
     if (!this.tile || !this.src) return nothing;
     return this.#bgTask.render({
       pending: () => html`<div>…</div>`,
-      complete: (url) => html`<img src=${url} width=${this.width} height=${this.height} alt=${this.alt}>`,
+      complete: (url) => html`<img src=${url} width=${this.width} height=${this.height} alt=${this.alt} part="image">`,
       error: (e) => {
         console.warn(e);
         return nothing;

@@ -24,7 +24,7 @@ customElements.define('atmos-bg-pic', class AtmosBackgroundPicture extends LitEl
         aspect-ratio: 16/9;
       }
       div {
-        background-image: url(var(--bg-src));
+        background-image: var(--bg-src);
         background-size: cover;
         background-position: 50%;
       }
@@ -35,7 +35,7 @@ customElements.define('atmos-bg-pic', class AtmosBackgroundPicture extends LitEl
 
     return this.#bgTask.render({
       pending: () => html`<div>Loading…</div>`,
-      complete: (url) => html`<div style=${`--bg-src: ${url}`}></div>`,
+      complete: (url) => html`<div style=${`--bg-src: url(${url})`}></div>`,
       error: (e) => {
         console.warn(e);
         return nothing;
