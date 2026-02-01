@@ -1,11 +1,14 @@
 
 import { navigateFromHash } from './stores.js';
 import './el/browser.js';
+import './el/profile-card.js';
 import './el/tile-card.js';
 
 // XXX
 //  x respond to hash on load and change
 //  x input causes hash to change
+//  x need to resolve handles
+//  - get profile data
 //  - loading indicator
 //  - load not just the tile, but also details about the user (Tile API?)
 //  - render in a way that shows name, avatar, etc. so it's nice, like a post

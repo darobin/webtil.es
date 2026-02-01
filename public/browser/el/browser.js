@@ -1,12 +1,13 @@
 
 import { LitElement, html, css, nothing } from 'lit';
 import { StoreController } from "@nanostores/lit";
-import { $title, $url, $currentTile, $error, error } from '../stores.js';
+import { $title, $url, $currentTile, $profile, $error, error } from '../stores.js';
 
 customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
   #title = new StoreController(this, $title);
   #url = new StoreController(this, $url);
   #currentTile = new StoreController(this, $currentTile);
+  #profile = new StoreController(this, $profile);
   #error = new StoreController(this, $error);
   static styles = [
     css`
@@ -57,9 +58,9 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
     let body = nothing;
     if (this.#error.value) body = html`<div class="error">${this.#error.value}</div>`;
     else if (this.#currentTile.value) {
-      // XXX
-      // This is supposed to have a lot more, like the person and all
-      body = html`<atmos-tile-card .tile=${this.#currentTile.value}></atmos-tile-card>`;
+      body = html`<atmos-profile-card .profile=${this.#profile.value}>
+        <atmos-tile-card .tile=${this.#currentTile.value}></atmos-tile-card>
+      </atmos-profile-card>`;
     }
     else body = html`<div class="nothing">ATMOS ready to sail the skies.</div>`;
     return html`<div id="browser">
