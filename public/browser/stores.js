@@ -72,10 +72,8 @@ export const $title = atom(defaultTitle);
 export function setTitle (title) {
   $title.set(title || defaultTitle);
 }
-const titleChangeHandler = (ev) => setTitle(ev.title);
-$currentTile.subscribe((tile, oldTile) => {
-  if (tile) tile.addEventListener('title-change', titleChangeHandler);
-  if (oldTile) tile.removeEventListener('title-change', titleChangeHandler);
+$currentTile.subscribe((tile) => {
+  setTitle(tile?.manifest?.name);
 });
 
 export const $profile = atom();

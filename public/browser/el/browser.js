@@ -9,6 +9,9 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
   #currentTile = new StoreController(this, $currentTile);
   #profile = new StoreController(this, $profile);
   #error = new StoreController(this, $error);
+  static properties = {
+    mode: { attribute: false },
+  };
   static styles = [
     css`
       :host {
@@ -24,6 +27,12 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
         font-weight: 100;
         margin: 0;
         padding: var(--atmos-space-small);
+      }
+      h2 atmos-dyn-img {
+        vertical-align: middle;
+      }
+      h2 atmos-dyn-img::part(image) {
+        border-radius: 4px;
       }
       form {
         background: var(--atmos-shaded);
@@ -46,8 +55,22 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
       atmos-tile-card {
         margin: 0 auto;
       }
+      .content.card {
+        padding: 1rem;
+      }
+      .context-banner.live atmos-profile-tab {
+        border-bottom: 1px solid #666;
+        border-right: 1px solid #666;
+      }
+      .context-banner.live atmos-tile-tab {
+        border-bottom: 1px solid lightgrey;
+      }
     `
   ];
+  constructor () {
+    super();
+    this.mode = 'card';
+  }
   handleSubmit (ev) {
     ev.preventDefault();
     const url = ev.currentTarget.querySelector('input[name="url"]')?.value;
@@ -57,17 +80,35 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
     }
     window.location.hash = `#url=${url}`;
   }
+  handleClick () {
+    this.mode = 'live';
+  }
   render () {
     let body = nothing;
     if (this.#error.value) body = html`<div class="error">${this.#error.value}</div>`;
     else if (this.#currentTile.value) {
-      body = html`<atmos-profile-card .profile=${this.#profile.value}>
-        <atmos-tile-card .tile=${this.#currentTile.value}></atmos-tile-card>
-      </atmos-profile-card>`;
+      body = html`<div class=${`context-banner ${this.mode}`}>
+          <atmos-profile-tab .profile=${this.#profile.value}></atmos-profile-tab>
+          ${
+            this.mode === 'live'
+            ? html`<atmos-tile-tab .tile=${this.#currentTile.value}></atmos-tile-tab>`
+            : nothing
+          }
+        </div>
+        <div class=${`content ${this.mode}`}>
+          <atmos-tile-card .tile=${this.#currentTile.value} @click=${this.handleClick}></atmos-tile-card>
+        </div>
+      `;
     }
     else body = html`<div class="nothing">ATMOS ready to sail the skies.</div>`;
     return html`<div id="browser">
-      <h2>${this.#title.value}</h2>
+      <h2>
+        ${this.#currentTile.value?.manifest?.icons?.[0]?.src
+          ? html`<atmos-dyn-img .tile=${this.#currentTile.value} src=${this.#currentTile.value.manifest.icons[0].src} width="24" height="24" alt="icon"></atmos-dyn-img>`
+          : nothing
+        }
+        ${this.#title.value}
+      </h2>
       <form @submit=${this.handleSubmit}>
         <input type="text" name="url" value=${this.#url.value}>
       </form>

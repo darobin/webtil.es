@@ -38,6 +38,3 @@ customElements.define('atmos-dyn-img', class AtmosDynamicImage extends LitElemen
     });
   }
 });
-
-
-// el('img', { src: url, width: '48', height: '48', alt: 'icon', style: { 'padding-right': '0.5rem' } }, [], title);

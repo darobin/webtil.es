@@ -27,6 +27,7 @@ customElements.define('atmos-bg-pic', class AtmosBackgroundPicture extends LitEl
         background-image: var(--bg-src);
         background-size: cover;
         background-position: 50%;
+        height: 100%;
       }
     `
   ];
