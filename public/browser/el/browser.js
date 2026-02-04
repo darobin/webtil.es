@@ -58,18 +58,27 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
       .content.card {
         padding: 1rem;
       }
+      .context-banner.live {
+        display: flex;
+      }
       .context-banner.live atmos-profile-tab {
         border-bottom: 1px solid #666;
         border-right: 1px solid #666;
+        background: #eee;
       }
       .context-banner.live atmos-tile-tab {
         border-bottom: 1px solid lightgrey;
+        flex-grow: 1;
       }
     `
   ];
   constructor () {
     super();
     this.mode = 'card';
+  }
+  // XXX not working
+  willUpdate (changedProperties) {
+    if (changedProperties.has('tile')) this.mode = 'card';
   }
   handleSubmit (ev) {
     ev.preventDefault();
@@ -87,6 +96,9 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
     let body = nothing;
     if (this.#error.value) body = html`<div class="error">${this.#error.value}</div>`;
     else if (this.#currentTile.value) {
+      let height = this.#currentTile.value.manifest?.sizing?.height || 300;
+      height = Math.min(height, 1000); // max at 1000px for now
+      height = Math.max(height, 300); // min at 300px for now
       body = html`<div class=${`context-banner ${this.mode}`}>
           <atmos-profile-tab .profile=${this.#profile.value}></atmos-profile-tab>
           ${
@@ -96,7 +108,11 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
           }
         </div>
         <div class=${`content ${this.mode}`}>
-          <atmos-tile-card .tile=${this.#currentTile.value} @click=${this.handleClick}></atmos-tile-card>
+          ${
+            this.mode === 'live'
+            ? html`<atmos-tile-live .tile=${this.#currentTile.value} style=${`height: ${height}px`}></atmos-tile-live>`
+            : html`<atmos-tile-card .tile=${this.#currentTile.value} @click=${this.handleClick}></atmos-tile-card>`
+          }
         </div>
       `;
     }

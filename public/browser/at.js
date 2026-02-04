@@ -3,6 +3,7 @@ import { navigateFromHash } from './stores.js';
 import './el/browser.js';
 import './el/profile-tab.js';
 import './el/tile-card.js';
+import './el/tile-live.js';
 import './el/tile-tab.js';
 import './el/bg-pic.js';
 import './el/dyn-img.js';
