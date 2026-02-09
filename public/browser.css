@@ -34,4 +34,24 @@ a:hover {
 
 atmos-browser {
   margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  border: var(--brutal-border);
+  text-decoration-color: var(--red);
+}
+h3 {
+  margin: 1rem 0 0 0;
+}
+h3 + p {
+  margin-top: 0;
+}
+pre {
+  padding: 1rem;
+  background-color: #eee;
+}
+section img {
+  max-width: 100%;
 }

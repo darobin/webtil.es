@@ -27,11 +27,184 @@
         </li>
       </ul>
     </section>
-    <section>
+    <section id="tutorial">
       <h2>Tutorial</h2>
       <p>
-        tk
+        Tiles are extremely simple to create and deploy, on the assumption that:
+        you have an AT account, you have some very basic knowledge of how to use
+        the command line, and you can build simple web content.
       </p>
+      <p>
+        Let's just dive in!
+      </p>
+      <section>
+        <h3>Preliminaries</h3>
+        <p>
+          This section covers steps that you'll only need to do once to set yourself
+          up.
+        </p>
+        <p>
+          First, let's install the <code>atile</code> command globally.
+        </p>
+        <pre>
+npm install -g @dasl/tiles</pre>
+        <p>
+          If that runs without error, you can check that you have it:
+        </p>
+        <pre>
+$ atile
+Usage: atile [options] [command]
+
+Manipulating tiles on the AT protocol
+
+Options:
+  -V, --version                  output the version number
+  -h, --help                     display help for command
+
+Commands:
+  login &lt;handle> &lt;appPassword>   log a handle into AT so that you can post
+  logout &lt;handle>                log a specific handle out
+  default-user &lt;handle>          set the default handle to use when unspecified
+  list-users                     list all logged in handles you have
+  publish [options] &lt;dir>        publish a tile to the Atmosphere
+  delete [options] &lt;dirOrATURL>  delete a tile from the Atmosphere
+  help [command]                 display help for command</pre>
+        <p>
+          If you see some output similar to the above, then you're good!
+        </p>
+        <p>
+          The next step is that you need to create an app password. Using Bluesky,
+          you can do it from <a href="https://bsky.app/settings/app-passwords">the
+          relevant settings page</a>.
+        </p>
+        <p>
+          Using your app password, you can now login for the corresponding handle:
+        </p>
+        <pre>
+atile login robin.berjon.com hunter2</pre>
+        <p>
+          That's it! You're all set up to be publishing tiles.
+        </p>
+      </section>
+      <section>
+        <h3>Hello World!</h3>
+        <p>
+          Let's start by making a very very boring tile that has zero frills and
+          just says "Hello World!" First, you want a directory for the tile's
+          content to live in:
+        </p>
+        <pre>
+mkdir hello-tile</pre>
+        <p>
+          Then let's just create an HTML document to say "hello world" with. A tile
+          <em>must</em> have a root path (the path of which is <code>/</code>). The
+          <code>atile</code> command just looks for the classic <code>index.html</code>
+          to use for that, so we'll use that name.
+        </p>
+        <pre>
+echo '&lt;p>Hello World!&lt;/p>' > hello-tile/index.html</pre>
+        <p>
+          The other resource that's required for a tile is a manifest. Because
+          producing a correct tile manifest can be a little bit of work,
+          <code>atile</code> generates almost all of it for you. However, you
+          still need a name for your tile (which is like an app name — tile
+          manifestes are derived from Web App Manifests). There are other things
+          that you can put in a manifest, but let's just start with the minimum.
+        </p>
+        <pre>
+echo '{"name":"The Hello Tile"}' > hello-tile/manifest.json</pre>
+        <p>
+          And that's all the coding we'll need — one line in each of two files — to
+          get something up there. We can now publish it:
+        </p>
+        <pre>
+atile publish -s hello-tile/</pre>
+        <p>
+          The command is simple: it publishes the path to the specified directory. The <code>-s</code>
+          option is used to that <code>atile</code> will keep a mapping from that directory to the
+          specific identifier used for that tile. This means that if you run the command again, it
+          will update the tile on AT instead of creating a new one. (If you don't want to rely on the
+          directory path remaining stable, you can use the <code>-t</code> paramters to specify the TID.)
+        </p>
+        <p>
+          The output should look like the following:
+        </p>
+        <p>
+          <img src="publish-output.png" alt="Terminal output example of the command">
+        </p>
+        <p>
+          If you know go to <a href="https://webtil.es/browser/">open the tile in the tile browser</a>,
+          you will see something like this (except with your avatar):
+        </p>
+        <p>
+          <img src="tile-card-01.png" alt="Tile card in the browser">
+        </p>
+        <p>
+          It's important to understand that tiles can be rendered in multiple ways. Because they
+          have metadata that's published on AT, you can simply use that metadata to render a card
+          (just like link cards), which is useful if you don't want potentially hundreds of active
+          tiles executing at the same time as they appear in a feed. Because we've given very
+          limited metadata, there really isn't much to go on for the card, so you only get its
+          name. If you click on the card, you activate the tile, which triggers the most important
+          rendering move: live tiles. It looks like this:
+        </p>
+        <p>
+          <img src="tile-live-01.png" alt="A live tile that says hello world">
+        </p>
+        <p>
+          This tile isn't doing much but it's a full-fledged web app that's safely executing in a
+          secluded context. All you need to do is to add CSS, JS, etc. and republish!
+        </p>
+      </section>
+      <section>
+        <h3>Refinements</h3>
+        <p>
+          First, let's give it an icon. Because I'm lazy, I'll just copy the
+          <a href="https://webtil.es/icon.png">Web Tiles icon</a> into <code>icon.png</code>
+          at the root of the tile. (It doesn't have to be there or to be called that.)
+          Similarly, I'll use <a href="https://www.flickr.com/photos/robin-berjon/3100614634/in/datetaken-public/">this random picture</a>
+          saved to <code>/banner.jpg</code> (also arbitrary) as the banner for the card.
+        </p>
+        <p>
+          We can then update <code>manifest.json</code> to the following:
+        </p>
+        <pre>
+{
+  "name": "The Hello Tile",
+  "description": "An extremely simple tile that just demonstrates how easy it is to get something published and going.",
+  "icons": [{ "src": "/icon.png" }],
+  "screenshots": [{ "src": "/banner.jpg" }]
+}</pre>
+        <p>
+          Note that both <code>icons</code> and <code>screenshots</code> are plural and take an
+          array. This is for compatibility with
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest">Web App Manifests</a>
+          (and I expect that tiles implementations will make use of the ability to specify alternatives).
+          Also note that the paths are prefixed with <code>/</code>. That's because all paths in the
+          manifest must be absolute with respect to the root of the tile. When <code>atile</code>
+          generates the complete manifest, it creates a <code>resources</code> entry that maps
+          <code>/icon.png</code> and other files to the <a href="https://dasl.ing/cid.html">CID (Content IDentifier)</a>
+          for that file along with important metadata like its MIME type. The <code>icons</code>'s
+          <code>src</code> must map to that so that it can be found at run time.
+        </p>
+        <p>
+          You can then republish:
+        </p>
+        <pre>
+atile publish -s hello-tile/</pre>
+        <p>
+          That generates a much
+          <a href="https://webtil.es/browser/#url=at://did:plc:izttpdp3l6vss5crelt5kcux/ing.dasl.masl/3meggnybzqs2n">more
+          colourful card</a>:
+        </p>
+        <p>
+          <img src="tile-card-02.png" alt="A tile card with banner, icon, description">
+        </p>
+        <p>
+          Clicking through will produce the same result as before because we haven't
+          updated the code. That part is up to you!
+        </p>
+      </section>
     </section>
   </main>
 </body>

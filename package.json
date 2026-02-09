@@ -43,11 +43,11 @@
     "nodemon": "^3.1.7"
   },
   "dependencies": {
-    "@dasl/tiles": "^1.1.0",
+    "@dasl/tiles": "^1.1.2",
     "@lit/task": "^1.0.3",
     "@nanostores/lit": "^0.2.3",
     "acme-dns-01-gandi": "github:darobin/acme-dns-01-gandi",
-    "commander": "^14.0.2",
+    "commander": "^14.0.3",
     "execa": "^9.6.1",
     "greenlock": "^2.8.9",
     "greenlock-store-fs": "^3.2.2",
