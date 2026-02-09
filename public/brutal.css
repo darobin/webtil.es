@@ -104,7 +104,7 @@ dd {
 
 #what > h2 { text-decoration-color: var(--orange); }
 #decisions > h2 { text-decoration-color: var(--purple); }
-#code > h2 { text-decoration-color: var(--blue); }
+#more > h2 { text-decoration-color: var(--blue); }
 #demos > h2 { text-decoration-color: var(--red); }
 footer {
   display: flex;
