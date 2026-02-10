@@ -82,10 +82,15 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
   constructor () {
     super();
     this.mode = 'card';
+    this.prevURL = this.#url.value;
   }
   // XXX not working
   willUpdate (changedProperties) {
     if (changedProperties.has('tile')) this.mode = 'card';
+    if (this.prevURL !== this.#url.value) {
+      this.prevURL = this.#url.value;
+      this.mode = 'card';
+    }
   }
   handleSubmit (ev) {
     ev.preventDefault();
