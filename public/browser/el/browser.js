@@ -70,6 +70,13 @@ customElements.define('atmos-browser', class AtmosBrowser extends LitElement {
         border-bottom: 1px solid lightgrey;
         flex-grow: 1;
       }
+      .nothing {
+        min-height: 400px;
+        color: #999;
+        align-content: center;
+        text-align: center;
+        font-size: 1.2rem;
+      }
     `
   ];
   constructor () {
