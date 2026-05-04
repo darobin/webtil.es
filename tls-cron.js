@@ -109,6 +109,7 @@ async function localCert () {
 }
 
 async function productionCert () {
+  await generateCert();
   const localDir = join(basePath, env, domains[0]);
   const res = await Promise.all(
     ['privkey', 'fullchain'].map(n => {
