@@ -1,6 +1,6 @@
 
-import { TileMothership } from '@dasl/tiles/loader';
-import { WebXDCTileLoader } from '@dasl/tiles/loader/webxdc';
+import { TileMothership } from '@dasl/tile-loader';
+import { WebXDCTileLoader } from '@dasl/tile-loader/webxdc';
 
 // Trying out XDC
 // It would be great to reuse https://github.com/webxdc/hello for these demos.

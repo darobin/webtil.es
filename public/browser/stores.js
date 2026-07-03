@@ -1,6 +1,6 @@
 
-import { TileMothership } from '@dasl/tiles/loader';
-import { ATTileLoader } from '@dasl/tiles/loader/at';
+import { TileMothership } from '@dasl/tile-loader';
+import { ATTileLoader } from '@dasl/tile-loader/at';
 import { atom } from 'nanostores';
 
 // https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=robin.berjon.com

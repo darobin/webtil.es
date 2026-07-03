@@ -1,6 +1,6 @@
 
-import { TileMothership } from '@dasl/tiles/loader';
-import { CARTileLoader } from '@dasl/tiles/loader/car';
+import { TileMothership } from '@dasl/tile-loader';
+import { CARTileLoader } from '@dasl/tile-loader/car';
 
 // CAR Tiles!
 const car = new CARTileLoader();

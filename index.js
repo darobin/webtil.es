@@ -1,6 +1,6 @@
 
 import express from 'express';
-import { createTileLoadingRouter } from '@dasl/tiles/loading-server';
+import { createTileLoadingRouter } from '@dasl/tile-server';
 
 const rel = makeRel(import.meta.url);
 

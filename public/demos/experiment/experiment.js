@@ -1,6 +1,6 @@
 
-import { TileMothership } from '@dasl/tiles/loader';
-import { MemoryTileLoader } from '@dasl/tiles/loader/memory';
+import { TileMothership } from '@dasl/tile-loader';
+import { MemoryTileLoader } from '@dasl/tile-loader/memory';
 
 // A more real experiment!
 const mem = new MemoryTileLoader();
