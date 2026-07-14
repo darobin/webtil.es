@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@dasl/tile-loader": "^2.0.0",
-    "@dasl/tile-server": "^2.0.0",
+    "@dasl/tile-server": "^2.1.0",
     "@lit/task": "^1.0.3",
     "@nanostores/lit": "^0.2.3",
     "acme-dns-01-gandi": "github:darobin/acme-dns-01-gandi",
