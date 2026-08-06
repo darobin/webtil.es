@@ -5,6 +5,7 @@
 
 import process from "node:process";
 import { join } from "node:path";
+import { mkdir, rm, readdir } from "node:fs/promises";
 import { program  } from "commander";
 import keytar from "keytar";
 import Greenlock from 'greenlock';
@@ -81,6 +82,10 @@ async function generateCert () {
   const token = await getToken();
   if (!token) throw new Error('No token set.');
   const dns01 = gandi.create({ token });
+  const localDir = join(basePath, env, domains[0]);
+  await mkdir(localDir, { recursive: true });
+  const files = await readdir(localDir);
+  await Promise.all(files.map(f => rm(join(localDir, f))));
   const g = Greenlock.create({
     packageRoot: rel('.'),
     maintainerEmail: EMAIL,
