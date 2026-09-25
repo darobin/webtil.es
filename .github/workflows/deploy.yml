@@ -1,0 +1,51 @@
+name: Deploy to supramundane
+
+# Ships the checkout to the `webtil-es` sm service on the supramundane server
+# and rebuilds its container. The service itself (routing snippet on the
+# front, TLS) is set up once by hand with `sm deploy` and only needs redoing
+# when service.json changes; this handles everything else.
+#
+# The upload goes through a staging directory and is then rsynced into the
+# service directory, so anything the server keeps there (an uncommitted .env)
+# survives.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload the checkout to a staging directory
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: "163.172.50.15"
+          username: root
+          key: ${{ secrets.KEY }}
+          passphrase: ${{ secrets.PASSWORD }}
+          source: "*,!.git,!.github,!.claude,!node_modules,!scratch"
+          target: /srv/supramundane/incoming/webtil-es/
+          rm: true
+      - name: Sync into the service directory and rebuild the container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: "163.172.50.15"
+          username: root
+          key: ${{ secrets.KEY }}
+          passphrase: ${{ secrets.PASSWORD }}
+          script: |
+            set -e
+            if [ ! -f /srv/supramundane/caddy-front/sites/webtil-es.caddy ]; then
+              echo "webtil-es is not wired into the front yet: run 'sm deploy' from a checkout first." >&2
+              exit 1
+            fi
+            mkdir -p /srv/supramundane/services/webtil-es
+            rsync -a --delete --exclude .env /srv/supramundane/incoming/webtil-es/ /srv/supramundane/services/webtil-es/
+            rm -rf /srv/supramundane/incoming/webtil-es
+            cd /srv/supramundane/services/webtil-es
+            docker compose up -d --build

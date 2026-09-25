@@ -8,6 +8,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "node index.js",
+    "deploy": "sm deploy",
     "watch": "concurrently --handle-input npm:watch-js npm:watch-server",
     "watch-server": "node --watch index.js",
     "XXXwatch-server": "npx http-server ./public -p 8017 -g",
@@ -47,13 +48,7 @@
     "@dasl/tile-server": "^2.1.0",
     "@lit/task": "^1.0.3",
     "@nanostores/lit": "^0.2.3",
-    "acme-dns-01-gandi": "github:darobin/acme-dns-01-gandi",
-    "commander": "^14.0.3",
-    "execa": "^9.6.1",
     "express": "^5.2.1",
-    "greenlock": "^2.8.9",
-    "greenlock-store-fs": "^3.2.2",
-    "keytar": "^7.9.0",
     "lit": "^3.3.2",
     "nanostores": "^1.1.0"
   }

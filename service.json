@@ -1,0 +1,17 @@
+{
+  "name": "webtil-es",
+  "type": "node",
+  "domains": {
+    "local": ["webtiles.bast"],
+    "prod": ["webtil.es"]
+  },
+  "wildcards": {
+    "local": ["*.webtiles.bast"],
+    "prod": ["*.webtil.es"]
+  },
+  "headers": false,
+  "upstreamPort": 1503,
+  "entry": "index.js",
+  "data": false,
+  "wildcardTls": "acmedns"
+}

@@ -1,0 +1,16 @@
+services:
+  webtil-es:
+    build: .
+    restart: unless-stopped
+    container_name: webtil-es
+    environment:
+      # The host tile origins are minted under. Production by default; for
+      # `sm deploy --local` export TILES_HOST=webtiles.bast first.
+      TILES_HOST: ${TILES_HOST:-webtil.es}
+    networks:
+      - default
+
+networks:
+  default:
+    name: supramundane
+    external: true
