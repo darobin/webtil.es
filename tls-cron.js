@@ -80,7 +80,14 @@ async function getToken () {
 
 async function generateCert () {
   const token = await getToken();
-  if (!token) throw new Error('No token set.');
+  if (!token) {
+    throw new Error(
+      `Keychain lookup for ${SERVICE}/${ACCOUNT} came back empty. Either the token was never stored `
+      + `(run \`tls-cron.js token <token>\`), or this process cannot see the login keychain. The latter `
+      + `happens whenever it runs outside the GUI login session, which is the case under cron — use a `
+      + `launchd agent instead.`
+    );
+  }
   const dns01 = gandi.create({ token });
   const localDir = join(basePath, env, domains[0]);
   await mkdir(localDir, { recursive: true });

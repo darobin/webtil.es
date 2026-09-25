@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>es.webtil.tls.renew</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/node</string>
+    <string>/Users/robin/Code/darobin/webtil.es/tls-cron.js</string>
+    <string>production</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/robin/Code/darobin/webtil.es</string>
+
+  <!-- 1st of each month at 11:00. Missed runs (asleep, logged out) fire at next wake/login. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Day</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>11</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/robin/Library/Logs/webtil-tls.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/robin/Library/Logs/webtil-tls.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>
