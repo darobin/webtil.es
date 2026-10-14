@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="/icon.png">
+    <title>Containment Check — Web Tiles</title>
+    <link rel="stylesheet" href="/brutal.css">
+    <link rel="stylesheet" href="check.css">
+    <meta name="robots" content="noindex">
+    <script src="check.min.js" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Containment Check</h1>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/browser/">Browser</a></li>
+            <li><a href="/check/">Check</a></li>
+            <li><a href="https://dasl.ing/tiles.html">Spec</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section id="what">
+        <h2>Does your tile host hold?</h2>
+        <p>
+          This loads a <dfn>red-team tile</dfn> through a loading server of your
+          choosing. The tile tries every way out of the sandbox it knows: network
+          egress over <code>fetch</code>, XHR, WebSocket, EventSource, beacons,
+          WebRTC, external scripts, styles, images, fonts, frames and forms;
+          scripting or navigating the host; reaching host runtime APIs;
+          registering or unregistering its service worker; powerful features. It
+          then reports what was contained and what got through, and why. Point it
+          at your own <code>load.</code> domain to check a deployment.
+        </p>
+        <form id="check">
+          <label>
+            Loading server
+            <input name="load" type="text" placeholder="load.example.com" required spellcheck="false">
+          </label>
+          <label>
+            Tile
+            <input name="tile" type="text" placeholder="at://… or https://…/containment.tile" required spellcheck="false">
+          </label>
+          <label class="inline">
+            <input name="deep" type="checkbox">
+            Destructive probes too (the tile unregisters its own service worker; it stops working until reloaded)
+          </label>
+          <button type="submit">Run the check</button>
+        </form>
+        <p id="probe-note" class="note" hidden></p>
+        <p id="status" class="status"></p>
+      </section>
+      <section id="result" hidden>
+        <h2 id="verdict"></h2>
+        <p id="context" class="context"></p>
+        <div id="results"></div>
+      </section>
+      <section id="tile-section" hidden>
+        <h2>The tile</h2>
+        <div id="tile"></div>
+      </section>
+      <section id="about">
+        <h2>What a result means</h2>
+        <p>
+          <b>✓ contained</b> is an escape the sandbox stopped; <b>✗ breach</b> one
+          that got through. <b>● permitted by policy</b> marks what tiles are
+          allowed to do on purpose (run their own code, keep storage on their
+          throwaway origin, talk to the host over <code>postMessage</code>), and
+          <b>▲</b> what they may do on a user gesture (open a window, as a link
+          would). <b>?</b> could not be told apart from inside the tile; <b>○</b>
+          cannot be observed from inside at all (resource hints need a packet
+          capture).
+        </p>
+        <p>
+          The tile's network probes aim at <code>/probe/*</code> on this site,
+          which answers in ways no tile resource can, so the tile can tell
+          "reached the network" from "the service worker answered with tile
+          content". Nothing sensitive is sent. The tile and the probe endpoints
+          are <a href="https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/containment-tile"><code>@dasl/containment-tile</code></a>;
+          the policy they test is in <a href="https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/tile-lexicon"><code>@dasl/tile-lexicon</code></a>.
+        </p>
+      </section>
+      <footer>
+        <p>
+          Made with 👾 by the IPFS Foundation.
+        </p>
+      </footer>
+    </main>
+    <script src="/colourful.js" defer></script>
+  </body>
+</html>

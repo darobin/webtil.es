@@ -7,11 +7,30 @@ the loader that isolates every tile on its own origin.
 ## How it works
 
 `index.js` is a small Express app. It serves `public/` and mounts
-[`@dasl/tile-server`](https://github.com/darobin/dasl-tiles/tree/main/tile-server),
+[`@dasl/tile-server`](https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/tile-server),
 which bounces every request to `load.webtil.es` onto a fresh random
 `<20 letters>.webtil.es` origin and serves the loader runtime there under
 `/.well-known/web-tiles/`. So the server has to answer for `webtil.es` *and* for
 every subdomain of it — an unbounded population, one new hostname per tile load.
+
+## The containment check
+
+<https://webtil.es/check/> (also <https://bad.webtil.es/>) loads the
+[containment tile](https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/containment-tile),
+a red-team tile that tries every way out of the sandbox it knows, through any
+loading server you name, and shows its report: which escapes were contained,
+which got through, and why. It is for anyone running a tile host to check a
+deployment before (and after) trusting it with tiles. The page ships its own
+copy of the tile (`public/check/containment.tile`, a CAR made with `atile
+bundle`) so it works without the AT Protocol; an `at://` URI can be given
+instead.
+
+The tile's network probes aim at `/probe/*` on this site (JSON, an image,
+CSS, a module, an echo page, an event stream, and a WebSocket echo at
+`/probe/ws`), served by `@dasl/containment-tile`'s router. They answer in ways
+no tile resource can, so the tile can tell "reached the network" from "the
+service worker answered with tile content". The check page refuses to run when
+they are not answering, since a "contained" against nothing means nothing.
 
 ## Hosting
 

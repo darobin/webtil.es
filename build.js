@@ -8,6 +8,7 @@ const sources = [
   // { from: 'public/demos/xdc/xdc.js', to: 'public/demos/xdc/xdc.min.js' },
   // { from: 'public/demos/car/car.js', to: 'public/demos/car/car.min.js' },
   { from: 'public/browser/at.js', to: 'public/browser/at.min.js' },
+  { from: 'public/check/check.js', to: 'public/check/check.min.js' },
   ].map(({ from, to }) => ({
     entryPoints: [from],
     bundle: true,

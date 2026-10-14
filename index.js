@@ -2,6 +2,7 @@
 import process from 'node:process';
 import express from 'express';
 import { createTileLoadingRouter } from '@dasl/tile-server';
+import { createProbeRouter, attachProbeSocket } from '@dasl/containment-tile/probe';
 
 // The host tile origins are minted under: load.<host> bounces every load onto
 // a fresh <random>.<host>. Production by default; behind the local front this
@@ -28,7 +29,18 @@ app.use((req, res, next) => {
   res.set('strict-transport-security', 'max-age=63072000; preload');
   next();
 });
+// bad.<host> is the memorable name for the containment check. It has to be
+// answered before the tile router, which would otherwise take it for a tile
+// origin and dead-end it.
+app.use((req, res, next) => {
+  if (req.hostname !== `bad.${TILES_HOST}`) return next();
+  const port = req.host.match(/:(\d+)$/)?.[1];
+  res.redirect(302, `${req.protocol}://${TILES_HOST}${port ? `:${port}` : ''}/check/`);
+});
 app.use(createTileLoadingRouter(TILES_HOST));
+// What the containment tile aims its network probes at (see /check/). Only
+// on the site itself: on tile origins the router above has already answered.
+app.use('/probe', createProbeRouter());
 app.use(express.static(rel('./public'), {
   setHeaders (res) {
     res.set({
@@ -42,7 +54,8 @@ app.use(express.static(rel('./public'), {
   },
 }));
 
-app.listen(PORT, () => console.log(`webtil.es: serving ${TILES_HOST} and *.${TILES_HOST} on :${PORT}`));
+const server = app.listen(PORT, () => console.log(`webtil.es: serving ${TILES_HOST} and *.${TILES_HOST} on :${PORT}`));
+attachProbeSocket(server, '/probe');
 
 // call with makeRel(import.meta.url), returns a function that resolves relative paths
 function makeRel (importURL) {

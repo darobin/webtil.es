@@ -1,0 +1,92 @@
+#check {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+#check label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 700;
+}
+#check label.inline {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+#check input[type="text"] {
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border: var(--brutal-border);
+  border-radius: 4px;
+}
+#check button {
+  justify-self: start;
+  font: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.5rem 1.2rem;
+  border: var(--brutal-border);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+#check button:hover { background: #eee; }
+#check button:disabled { opacity: 0.5; cursor: default; }
+
+.note {
+  border-left: 6px solid var(--red, #c00);
+  padding: 0.5rem 1rem;
+  background: #fff5f5;
+}
+.status { color: #555; }
+.context {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: #555;
+  word-break: break-all;
+}
+
+#verdict.contained { color: #116b3a; }
+#verdict.breach { color: #a31515; }
+
+.group h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #666;
+  margin: 1.2rem 0 0.4rem;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1.5rem 14rem 1fr;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 0.4rem 0.3rem;
+  border-top: 1px solid #e5e5e5;
+}
+.row .icon { text-align: center; font-weight: 700; }
+.row .name { font-weight: 700; }
+.row .detail {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: #444;
+  word-break: break-word;
+}
+.row .attempt {
+  grid-column: 2 / 4;
+  font-size: 0.8rem;
+  color: #777;
+}
+.status-contained .icon { color: #116b3a; }
+.status-breach { background: #fff0f0; }
+.status-breach .icon, .status-breach .name { color: #a31515; }
+.status-permitted .icon { color: #2a56c6; }
+.status-elevated .icon, .status-elevated .name { color: #a66a00; }
+.status-restricted .icon, .status-inconclusive .icon, .status-unobservable .icon { color: #777; }
+
+#tile iframe {
+  border: var(--brutal-border);
+  border-radius: 4px;
+}
