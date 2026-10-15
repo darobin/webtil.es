@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@dasl/containment-tile": "^2.1.0",
+    "@dasl/tile-host": "^2.0.0",
     "@dasl/tile-loader": "^2.1.0",
     "@dasl/tile-server": "^2.2.0",
     "@lit/task": "^1.0.3",

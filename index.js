@@ -3,6 +3,7 @@ import process from 'node:process';
 import express from 'express';
 import { createTileLoadingRouter } from '@dasl/tile-server';
 import { createProbeRouter, attachProbeSocket } from '@dasl/containment-tile/probe';
+import { createTileHostRouter } from '@dasl/tile-host';
 
 // The host tile origins are minted under: load.<host> bounces every load onto
 // a fresh <random>.<host>. Production by default; behind the local front this
@@ -41,6 +42,11 @@ app.use(createTileLoadingRouter(TILES_HOST));
 // What the containment tile aims its network probes at (see /check/). Only
 // on the site itself: on tile origins the router above has already answered.
 app.use('/probe', createProbeRouter());
+// One tile, filling the page, for WebViews and iframes (see @dasl/tile-host):
+// https://webtil.es/host/?tile=at://... The loading server defaults to
+// load.<host>, so the page needs no configuration here. Before the static
+// middleware below, whose X-Frame-Options would stop it being embedded.
+app.use('/host', createTileHostRouter());
 app.use(express.static(rel('./public'), {
   setHeaders (res) {
     res.set({

@@ -32,6 +32,17 @@ no tile resource can, so the tile can tell "reached the network" from "the
 service worker answered with tile content". The check page refuses to run when
 they are not answering, since a "contained" against nothing means nothing.
 
+## The host page
+
+<https://webtil.es/host/?tile=at://…> runs one tile, filling the page, for
+embedders that cannot run the loader themselves: a native app's WebView
+([mu](https://mu.social) uses it for tile posts on iOS and Android) or a site
+putting a tile in an iframe. It is
+[`@dasl/tile-host`](https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/tile-host),
+mounted at `/host`; that README has the message bridge and what a WebView has to
+set (App-Bound Domains on iOS, in particular). The loading server defaults to
+`load.webtil.es`.
+
 ## Hosting
 
 The site is a node service behind the supramundane Caddy front (see the
