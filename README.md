@@ -1,5 +1,10 @@
-
 # webtil.es
+
+> **This repository has moved.** The tiles site now lives in the DASL tiles
+> monorepo on Tangled: <https://tangled.org/robin.berjon.com/dasl-tiles/tree/main/webtil.es>
+> (issues and pull requests there too). It is deployed from that repository, not
+> from here: the GitHub Actions workflow is gone and this copy is archived.
+
 
 The tiles site: the [DASL web tiles](https://dasl.ing/) browser and tutorial, plus
 the loader that isolates every tile on its own origin.
